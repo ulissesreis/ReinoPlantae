@@ -4,9 +4,9 @@ TCC Oferecido a Universidade de Mogi das Cruzes - Análise e denvolvimento de si
 
 Sistema Repositorio de plantas medicinais.
 
-### Demo
+## Demo
 
-**[View](http://ulissesreis.net/plantae/)**
+**[View a external website ](http://ulissesreis.net/plantae/)**
 
 ## Implementation
 
