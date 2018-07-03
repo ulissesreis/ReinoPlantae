@@ -1,0 +1,113 @@
+<div ng-include="'views/clienteMenu.html'"></div>
+<main role="main">
+  <section class="jumbotron text-center" id="apresentacao">
+    <div class="container">
+      <h1 class="jumbotron-heading">Enciclopédia das plantas</h1>
+      <p class="lead">Aqui você encontra o uso de plantas medicinais para cura de sintomas e doenças.</p>      
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="search.termo">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-success" ng-click="pesquisar(true)">Pesquisar</button>         
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="album bg-light" id="resultados">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">            
+          <div class="row mt-1 justify-content-around">                                  
+            
+            <div class="col-md-3 ">
+              <label for="exibir" class="text-muted">
+                <i class="fas fa-filter"></i> Exibir Somente
+              </label> 
+              <div class="form-check">
+                <input class="form-check-input" id="exibir" type="radio" value="plantas" ng-model="search.tipo" ng-change="pesquisar()"/> 
+                <label class="form-check-label" for="exibir">Plantas Medicinais</label>
+              </div>    
+              <div class="form-check">
+                <input  class="form-check-input" id="exibir" type="radio" value="sintomas" ng-model="search.tipo" ng-change="pesquisar()"/>                   
+                <label class="form-check-label" for="exibir">Sintomas/Doenças</label> 
+              </div>    
+            </div>    
+            <div class="col-md-3">
+              <label for="ordem" class="text-muted">
+                <i class="fas fa-sort"></i> Ordenar por
+              </label>
+              <div class="form-check" ng-show="search.tipo =='plantas'">
+                <input class="form-check-input" id="ordenarClassificacao" type="radio" value="1" ng-model="search.ordem" ng-change="pesquisar()"/> 
+                <label class="form-check-label" for="ordenarClassificacao">Melhor classificação</label>
+              </div>    
+              <div class="form-check" ng-show="search.tipo =='plantas'">
+                <input  class="form-check-input" id="ordenarVisualizacao" type="radio" value="2" ng-model="search.ordem" ng-change="pesquisar()"/>                   
+                <label class="form-check-label" for="ordenarVisualizacao">Mais Visualizações</label> 
+              </div>
+              <div class="form-check">
+                <input  class="form-check-input" id="ordenarAlfabeto" type="radio" value="3" ng-model="search.ordem" ng-change="pesquisar()"/>                   
+                <label class="form-check-label" for="ordenarAlfabeto">Ordem Alfabética</label> 
+              </div>                                    
+            </div> 
+          </div>
+        </div>
+      </div>       
+      <div class="row py-5 cards-plantas">
+        <div class="col-md-12 p-5" ng-if="plantas.length == 0 && sintomas.length == 0">
+          <h5 class="text-center">
+            <i class="fas fa-times-circle"></i> Não foram encontrados resultados para sua pesquisa
+          </h5>
+        </div>
+        
+        <div class="col-md-4" dir-paginate="planta in plantas|itemsPerPage:6" pagination-id="plantaspag">
+          <div class="card mb-4">
+            <img class="card-img-top" alt="Planta {{planta.nome}}" ng-src="{{baseImg + (planta.imagem || noImage)}}" style="max-height: 250px; max-width: 100%; display: block;" data-holder-rendered="true">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-1 mt-0">
+                <small class="text-muted not-rating">
+                  <i class="fas fa-star" ng-class="{'star-check':planta.classificacao >= 1}"></i>
+                  <i class="fas fa-star" ng-class="{'star-check':planta.classificacao >= 2}"></i>
+                  <i class="fas fa-star" ng-class="{'star-check':planta.classificacao >= 3}"></i>
+                  <i class="fas fa-star" ng-class="{'star-check':planta.classificacao >= 4}"></i>
+                  <i class="fas fa-star" ng-class="{'star-check':planta.classificacao >= 5}"></i>                  
+                </small>
+                <small class="text-muted">
+                  <span ng-bind="planta.visualizacoes"></span>
+                  <i class="fas fa-eye"></i>
+                </small>
+              </div>
+              <h4 class="card-title" ng-bind="planta.nome"></h4>
+              <p class="card-text" ng-bind="planta.descricao_resumida"></p>
+              <div class="float-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-success" ng-click="plantaDetalhar(planta.planta_id)">Ver mais
+                    <i class="fab fa-pagelines"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>            
+        </div>                  
+        <div class="col-md-12">
+          <div class="list-group list-group-flush mt-5">                         
+            <a dir-paginate="sintoma in sintomas|itemsPerPage:10" pagination-id="sintomaspag" class="list-group-item list-group-item-action flex-column align-items-start" ng-click="sintomaDetalhar(sintoma.sintoma_id)">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" ng-bind="sintoma.nome"></h5>                                
+              </div>                
+              <small class="text-muted" ng-bind="sintoma.descricao_resumida"></small>
+            </a>                            
+          </div>        
+        </div>
+        <div class="col-md-12">
+          <div class="row justify-content-center" ng-if="plantas.length > 0">
+            <dir-pagination-controls pagination-id="plantaspag" max-size="5" boundary-links="true"></dir-pagination-controls>        
+          </div>
+          <div class="row justify-content-center" ng-if="sintomas.length > 0">
+            <dir-pagination-controls pagination-id="sintomaspag" max-size="5" boundary-links="true"></dir-pagination-controls>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</main>
+<div ng-include="'views/clienteFooter.html'"></div>

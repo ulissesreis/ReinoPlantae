@@ -1,0 +1,47 @@
+<div ng-include="'views/adminMenu.html'"></div>
+
+
+<h3 class="text-center mb-2">Pendências de análise</h3>
+<div class="container-fluid">
+    <p class="text-muted">Origem:</p>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" ng-click="verPlantas()" ng-class="{'active' : guia == 'plantas'}">Plantas <span class="badge badge-pill badge-info" ng-if="rel.plantas > 0" ng-bind="rel.plantas"></span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" ng-click="verSintomas()" ng-class="{'active' : guia == 'sintomas'}">Sintomas <span class="badge badge-pill badge-info" ng-if="rel.sintomas > 0" ng-bind="rel.sintomas"></span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" ng-click="verIndicacoes()" ng-class="{'active' : guia == 'indicacoes'}">Indicações <span class="badge badge-pill badge-info" ng-if="rel.indicacao > 0" ng-bind="rel.indicacao"></span></a>
+        </li>
+    </ul>
+</div>
+
+<div ng-if="guia == 'indicacoes'" ng-include="'views/analisarIndicacoes.html'"></div>
+<div ng-if="guia == 'sintomas'" ng-include="'views/analisarSintomas.html'"></div>
+<div ng-if="guia == 'plantas'" ng-include="'views/analisarPlantas.html'"></div>
+
+<div class="mt-5 pt-5" ng-include="'views/goBack.html'"></div>
+
+<div class="modal fade" id="recusar" tabindex="-1" role="dialog" aria-labelledby="recusar" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja recusar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="text-muted">Descricao o motivo</label>
+                    <textarea class="form-control" rows="3" ng-model="descricao" ng-maxlength="255" minlength="1" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" ng-disabled="!descricao" ng-click="setAvaliacao(0)">Recusar</button>
+            </div>
+        </div>
+    </div>
+</div>

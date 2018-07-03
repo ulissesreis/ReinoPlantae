@@ -1,0 +1,70 @@
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">        
+      <ul class="nav justify-content-around">
+        <li class="nav-item">
+          <a class="nav-link active text-white" ng-click="acessar('painel/planta')">
+            <i class="fab fa-pagelines"></i>
+            Plantas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" ng-click="acessar('painel/sintoma')" >
+            <i class="fas fa-notes-medical"></i>
+            Sintomas
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" ng-click="acessar('painel/indicacoes')" >
+              <i class="fas fa-medkit"></i>
+              Indicações
+            </a>
+          </li>
+        <li class="nav-item" ng-if="userLogin.perfil == 3">
+          <a class="nav-link text-white" ng-click="acessar('painel/usuario')" >
+            <i class="fas fa-users-cog"></i>
+            Usuários
+          </a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link text-white" ng-click="adminLogout()">
+            <i class="fas fa-sign-in-alt"></i>
+            Logout
+          </a>
+        </li>
+      </ul>                 
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark box-shadow navbar-fixed-top" id="header">
+    <div class="container d-flex justify-content-between">
+      <div class="float-left link" id="titulo" ng-click="acessar('painel')">
+        <i class="fas fa-tree fa-2x"></i>
+        <strong>O Reino Plantae</strong>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</div>
+</header>
+<div class="nav-scroller bg-white box-shadow mb-4" >
+  <nav class="nav nav-underline">      
+    <a class="nav-link" ng-click="acessar('painel/pendencias')" ng-if="userLogin.perfil == '2' || userLogin.perfil == '3'">
+      Pendências
+      <span class="badge badge-pill bg-light align-text-bottom" ng-bind="volumetria.pendencias"></span>
+    </a>
+    <a class="nav-link" ng-click="acessar('painel/sugestoes')" ng-if="userLogin.perfil == '2' || userLogin.perfil == '3'">
+      Sugestões         
+      <span class="badge badge-pill bg-light align-text-bottom" ng-bind="volumetria.sugestoes"></span> 
+    </a>
+    <a class="nav-link" ng-click="acessar('painel/monitor/analise')" ng-if="userLogin.perfil == '1'">
+      Em Análise         
+      <i class="far fa-clock"></i>
+    </a>
+    <a class="nav-link" ng-click="acessar('painel/monitor/respostas')" ng-if="userLogin.perfil == '1'">
+      Respostas         
+      <i class="far fa-edit"></i>
+    </a>
+  </nav>      
+</div>

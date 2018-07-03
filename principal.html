@@ -1,0 +1,76 @@
+<html lang="pt-br" ng-app="plantae">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="Reino Plantae">
+    <meta name="author" content="Reino Plantae">
+    <meta name="theme-color" content="#90AE64">
+    <link rel="icon" href="./app/img/icon.ico">
+    <title>O Reino Plantae</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="./lib/css/album.css" rel="stylesheet">
+    
+</head>
+
+<body ng-controller="principalController" ng-class="{'carregar': loading}" cz-shortcut-listen="true">                      
+    <div id="loading" ng-show="loading" class="text-center">
+        <i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+    </div>
+    <div ng-cloack ng-view="" ng-hide="loading">
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.js"  crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <!-- <script async src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></script> -->
+    <script src="./lib/js/angular-libs.js"></script>
+    <script src="./lib/js/pagination.js"></script>    
+    <script src="./app/app.js"></script>
+    <script src="./app/config/interceptors.js"></script>
+    <script src="./app/config/interceptors.js"></script>
+    <script src="./app/config/route.js"></script>
+    <script src="./app/config/parametros.js"></script>
+    <script src="./app/interceptors/timestamp.js"></script>
+    <script src="./app/interceptors/loading.js"></script>     
+    <script src="./app/services/admin.js"></script>
+    <script src="./app/services/inicial.js"></script>
+    <script src="./app/services/plantas.js"></script>    
+    <script src="./app/services/sintomas.js"></script>
+    <script src="./app/services/sugestao.js"></script> 
+    <script src="./app/services/usuarios.js"></script> 
+    <script src="./app/services/indicacoes.js"></script>
+    <script src="./app/services/monitor.js"></script>
+    <script src="./app/services/fileUpload.js"></script>
+    <script src="./app/directives/fileModel.js"></script>
+ 
+    <script src="./app/controllers/homeController.js"></script>
+    <script src="./app/controllers/principalController.js"></script>
+    <script src="./app/controllers/plantaController.js"></script>
+    <script src="./app/controllers/sintomaController.js"></script>
+    <script src="./app/controllers/sugerirController.js"></script>
+    <script src="./app/controllers/painelController.js"></script>
+    <script src="./app/controllers/sintomaPainelController.js"></script>
+    <script src="./app/controllers/usuarioPainelController.js"></script>
+    <script src="./app/controllers/plantaPainelController.js"></script>
+    <script src="./app/controllers/indicacoesController.js"></script>
+    <script src="./app/controllers/pendenciasController.js"></script>
+    <script src="./app/controllers/sugestoesController.js"></script>
+    <script src="./app/controllers/monitorRespostasController.js"></script>
+    <script src="./app/controllers/monitorAnaliseController.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        function goBack() {
+            window.history.back();
+        }
+    </script>    
+</body>
+
+</html>

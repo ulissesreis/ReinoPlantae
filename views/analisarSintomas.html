@@ -1,0 +1,79 @@
+<div class="container-fluid mt-1">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a ng-repeat="sintoma in sintomas" class="list-group-item list-group-item-action flex-column align-items-start" ng-click="avaliarSintoma(sintoma)">
+                    <div class="mb-2 d-flex w-100 justify-content-between">
+                        <p class="mb-1" ng-bind="sintoma.edicao.nome"></p>       
+                        <p class="badge badge-pill badge-success" ng-if="!sintoma.sintoma">Novo</p>                 
+                    </div>  
+                    <div class="d-flex w-100 justify-content-between">
+                        <small ng-bind="sintoma.edicao.usuario_solicitante"></small>
+                        <small ng-bind="sintoma.edicao.solicitacao|datahora:'dd/MM/yyyy'"></small>                                         
+                    </div> 
+                </a>         
+            </div>        
+        </div>
+        <div class="col-md-9" ng-if="sintoma">        
+            <div class="row justify-content-md-center">                
+                <div class="col-md-6" ng-if="sintoma.sintoma">
+                    <div class="card">
+                        <div class="card-header">   
+                            <h6 class="text-center">Estado atual:</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check align-self-center text-center">	
+                                <i class="fas fa-times" ng-show="sintoma.sintoma.status =='0'"></i>				
+                                <i class="fas fa-check" ng-show="sintoma.sintoma.status =='1'"></i>				
+                                <label class="form-check-label">Sintoma Ativo</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Nome</label>
+                                <input type="text" class="form-control form-control-sm form-control-plaintext" ng-model="sintoma.sintoma.nome" readonly>                               
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Descricao resumida</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="sintoma.sintoma.descricao_resumida" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Descricao completa</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="sintoma.sintoma.descricao_completa" readonly></textarea>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-center" ng-if="sintoma.sintoma">Após Mudanças:</h6>
+                            <h6 class="text-center" ng-if="!sintoma.sintoma">Novo</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check align-self-center text-center">	
+                                <i class="fas fa-times" ng-show="sintoma.edicao.status =='0' || !sintoma.edicao.status"></i>				
+                                <i class="fas fa-check" ng-show="sintoma.edicao.status =='1'"></i>				
+                                <label class="form-check-label">Sintoma Ativo</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Nome</label>
+                                <input type="text" class="form-control form-control-sm form-control-plaintext" ng-model="sintoma.edicao.nome" readonly>                               
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Descricao resumida</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="sintoma.edicao.descricao_resumida" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">Descricao completa</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="sintoma.edicao.descricao_completa" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around pl-3 pr-3 mt-2">
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#recusar">Recusar <i class="fas fa-times"></i></button>
+                <button type="button" class="btn btn-success" ng-click="setAvaliacaoSintoma(1)">Aprovar <i class="fas fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

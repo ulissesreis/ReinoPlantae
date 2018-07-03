@@ -1,0 +1,47 @@
+<header>
+  <div class="fixed-top">
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 py-4">
+            <h4 class="text-white">Sobre</h4>
+            <p class="text-muted">O repositório Plantae é mantido e atualizado por profissionais especialistas da área. Todas as sugestões enviadas pelos utilizadores irão passar por análise e aprovação dos especialistas para garantir a integridade da informação.</p>
+          </div>
+          <div class="col-sm-3 col-md-3 py-4" ng-if="!userLogin.painel">
+            <h5 class="text-white">Acesso Administrador</h5>
+            <div ng-if="acessoNegado" class="alert alert-danger fade show text-center" role="alert">
+              Usuário ou senha incorreta.                 
+            </div>               
+            <form class="form-signin">                   
+              <label for="inputEmail" class="sr-only">Email</label>
+              <input type="email" id="inputEmail" class="form-control form-control-sm mb-1" placeholder="Email" ng-model="login.email" required autofocus>
+              <label for="inputPassword" class="sr-only">Senha</label>
+              <input type="password" id="inputPassword" class="form-control form-control-sm mb-1" placeholder="Senha" ng-model="login.senha" required>                                       
+              <button class="btn btn-sm btn-outline-success btn-block" ng-click="adminLogin(login)" type="submit">Login <i class="fas fa-sign-in-alt"></i></button>                    
+            </form>              
+          </div>
+          <div ng-if="userLogin.painel" class="col-sm-3 col-md-3 py-4">
+            <button class="btn btn-sm btn-outline-success btn-block" ng-click="acessar('painel')" type="submit">Painel 
+              <i class="fas fa-tachometer-alt"></i>
+            </button>                                
+            <button class="btn btn-sm btn-outline-secondary btn-block" ng-click="adminLogout()" type="submit">Logout 
+              <i class="fas fa-sign-out-alt"></i>
+            </button>                                
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow" id="header">      
+      <div class="container d-flex justify-content-between">
+        <div class="float-left link" id="titulo" ng-click="toHome()">
+          <i class="fas fa-tree fa-2x"></i>
+          <strong>O Reino Plantae</strong>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</div>
+</header>

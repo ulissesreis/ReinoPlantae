@@ -1,0 +1,63 @@
+<div ng-include="'views/adminMenu.html'"></div>
+
+<div class="row p-1">
+	<div class="col-md-3 mt-5" >			
+		<div class="input-group">
+			<input type="text" class="form-control form-control-sm" ng-model="search.nome" placeholder="Nome">
+			<div class="input-group-append">				
+				<button type="button" class="btn btn-outline-success" ng-click="ordenarPor = 'nome';direcao = !direcao">
+					<i class="fas fa-sort"></i>
+				</button>
+			</div>
+		</div>
+		<div style="overflow-y: auto; max-height: 70%;">
+			<div class="list-group" >
+				<a ng-repeat="indicacao in indicacoes| filter:search|orderBy:ordenarPor:direcao"  class="list-group-item d-flex justify-content-between list-group-item-action align-items-center" ng-click="editarIndicacao(indicacao)">
+					<span ng-bind="indicacao.nome"></span>
+					<i ng-show="indicacao.perfil == '2'" class="fas fa-user-tie fa-2x"></i>
+					<i ng-show="indicacao.perfil == '3'" class="fas fa-user-secret fa-2x"></i>
+				</a>				
+			</div>
+		</div>
+	</div>	
+	<div class="col-md-9 p-3 ">
+		<div ng-include="'views/alertaAlteracao.html'" ng-if="userLogin.perfil == 1"></div>
+		<h3 class="text-center">Indicações
+			<button type="button" class="btn btn-outline-success" ng-click="incluirIndicacao()">
+				<i class="fas fa-plus"></i> 
+			</button>
+		</h3>
+		<hr>
+		<div class="box-shadow">
+			<div class="row">				
+				<div class="col-md-6 form-group">
+					<label for="plantas">Planta Medicinal</label>
+					<select class="form-control" id="planta" ng-model="indicacao.planta_id">
+						<option ng-repeat="row in plantas" value="{{row.planta_id}}">{{row.nome}}</option>					
+					</select>
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="plantas">Sintoma</label>
+					<select class="form-control" id="planta" ng-model="indicacao.sintoma_id">
+						<option ng-repeat="row in sintomas" value="{{row.sintoma_id}}">{{row.nome}}</option>					
+					</select>
+				</div>			
+				
+				<div class="col-md-12 form-group">
+					<label for="textResumo">Indicação/Modo: *</label>
+					<textarea class="form-control" id="textResumo" rows="2" ng-model="indicacao.indicacao" ng-minlength="5" maxlength="170" placeholder="Forma de uso..."></textarea>				
+				</div>         
+				<div class="col-md-3 form-check align-self-center ml-3 mb-3">					
+					<input type="checkbox" class="form-check-input" id="ativo" ng-true-value="'1'" ng-false-value="'0'" ng-model="indicacao.status" >
+					<label class="form-check-label" for="ativo">Indicacao Ativo</label>
+				</div>   				  
+			</div>		
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-3">
+					<button type="submit" ng-click="salvarIndicacao()" ng-disabled="!indicacao.indicacao || !indicacao.planta_id || !indicacao.sintoma_id" class="btn btn-success btn-block">Salvar <i class="far fa-save"></i> </button>
+				</div>						
+			</div>			
+		</div>
+	</div>
+</div>
+<div ng-include="'views/goBack.html'"></div>

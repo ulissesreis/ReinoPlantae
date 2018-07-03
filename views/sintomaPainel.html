@@ -1,0 +1,58 @@
+<div ng-include="'views/adminMenu.html'"></div>
+
+<div class="row p-1">
+	<div class="col-md-3 mt-5" >			
+		<div class="input-group">
+			<input type="text" class="form-control form-control-sm" ng-model="search.nome" placeholder="Nome">
+			<div class="input-group-append">				
+				<button type="button" class="btn btn-outline-success" ng-click="ordenarPor = 'nome';direcao = !direcao">
+					<i class="fas fa-sort"></i>
+				</button>
+			</div>
+		</div>
+		<div style="overflow-y: auto; max-height: 70%;">
+			<div class="list-group" >
+				<a ng-repeat="sintoma in sintomas| filter:search|orderBy:ordenarPor:direcao"  class="list-group-item d-flex justify-content-between list-group-item-action align-items-center" ng-click="editarSintoma(sintoma.sintoma_id)">
+					<span ng-bind="sintoma.nome"></span>
+					<i ng-show="sintoma.perfil == '2'" class="fas fa-user-tie fa-2x"></i>
+					<i ng-show="sintoma.perfil == '3'" class="fas fa-user-secret fa-2x"></i>
+				</a>				
+			</div>
+		</div>
+	</div>	
+	<div class="col-md-9 p-3 ">
+		<div ng-include="'views/alertaAlteracao.html'" ng-if="userLogin.perfil == 1"></div>
+		<h3 class="text-center">Sintomas
+			<button type="button" class="btn btn-outline-success" ng-click="incluirSintoma()">
+				<i class="fas fa-plus"></i> 
+			</button>
+		</h3>
+		<hr>
+		<div class="box-shadow">
+			<div class="row">
+				<div class="col-md-5 form-group">
+					<label for="InputNome">Nome: *</label>
+					<input type="text" class="form-control" id="InputNome" placeholder="Nome" ng-model="sintoma.nome" required ng-minlength="5" maxlength="60">					
+				</div>
+				<div class="col-md-3 form-check align-self-center">					
+					<input type="checkbox" class="form-check-input" id="ativo" ng-true-value="'1'" ng-false-value="'0'" ng-model="sintoma.status" >
+					<label class="form-check-label" for="ativo">Sintoma Ativo</label>
+				</div>
+				<div class="col-md-12 form-group">
+					<label for="textResumo">Resumo: *</label>
+					<textarea class="form-control" id="textResumo" rows="2" ng-model="sintoma.descricao_resumida" ng-minlength="5" maxlength="170" placeholder="Principais caracteristicas, grau de risco ,outros nomes associados..."></textarea>				
+				</div>            
+				<div class="col-md-12 form-group">
+					<label for="textDescricao">Descrição completa: *</label>
+					<textarea class="form-control" id="textDescricao" rows="5" ng-model="sintoma.descricao_completa" ng-minlength="5" maxlength="250" placeholder="Forma de contração, prevenção..."></textarea>				
+				</div>     
+			</div>		
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-3">
+					<button type="submit" ng-click="salvarSintoma()" ng-disabled="!sintoma.nome || !sintoma.descricao_resumida || !sintoma.descricao_completa" class="btn btn-success btn-block">Salvar <i class="far fa-save"></i> </button>
+				</div>						
+			</div>			
+		</div>
+	</div>
+</div>
+<div ng-include="'views/goBack.html'"></div>

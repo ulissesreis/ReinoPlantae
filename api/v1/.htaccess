@@ -1,0 +1,36 @@
+# Turn rewrite engine on
+RewriteEngine on
+RewriteRule ^cargainicial/?$   cargainicial.php [nc,qsa]
+RewriteRule ^login/?$   login.php [nc,qsa]
+RewriteRule ^logout/?$   logout.php [nc,qsa]
+
+#comum
+RewriteRule ^plantas/?$   plantas.php [nc,qsa]
+RewriteRule ^planta/?$   planta.php [nc,qsa]
+RewriteRule ^planta/nomes/?$   plantaNomes.php [nc,qsa]
+RewriteRule ^planta/nomes/([0-9]+)/?$   plantaNomes.php?planta_nome_id=$1 [nc,qsa]
+RewriteRule ^sintomas/?$   sintomas.php [nc,qsa]
+RewriteRule ^sintoma/?$   sintoma.php [nc,qsa]
+RewriteRule ^indicacao/?$   indicacao.php [nc,qsa]
+RewriteRule ^sugestao/?$   sugestao.php [nc,qsa]
+
+#Auxiliares
+RewriteRule ^planta/nomes/tipo/?$   plantaNomesTipo.php [nc,qsa]
+
+#aprovacao
+RewriteRule ^aprovacao/sintomas/?$   aprovacaoSintomas.php [nc,qsa]
+RewriteRule ^aprovacao/plantas/?$   aprovacaoPlantas.php [nc,qsa]
+RewriteRule ^aprovacao/indicacao/?$   aprovacaoIndicacao.php [nc,qsa]
+#administradores
+RewriteRule ^usuarios/?$   usuarios.php [nc,qsa]
+RewriteRule ^usuario/?$   usuario.php [nc,qsa]
+#rating
+RewriteRule ^rating/planta/?$   ratingPlanta.php [nc,qsa]
+#midia
+RewriteRule ^midia/planta/?$   midiaPlanta.php [nc,qsa]
+#aux
+RewriteRule ^relatorio/?$   relatorio.php [nc,qsa]
+RewriteRule ^monitor/analise/?$   monitorAnalise.php [nc,qsa]
+RewriteRule ^monitor/resposta/?$   monitorResposta.php [nc,qsa]
+RewriteRule ^combo/plantas/?$   comboPlanta.php [nc,qsa]
+RewriteRule ^combo/sintomas/?$   comboSintoma.php [nc,qsa]

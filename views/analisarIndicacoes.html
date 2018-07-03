@@ -1,0 +1,75 @@
+<div class="container-fluid mt-1">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a ng-repeat="indicacao in indicacoes" class="list-group-item list-group-item-action flex-column align-items-start" ng-click="avaliarIndicacao(indicacao)">
+                    <div class="mb-2 d-flex w-100 justify-content-between">
+                        <p class="mb-1">
+                            <span class="text-upper" ng-bind="indicacao.edicao.planta"></span>
+                            para
+                            <span class="text-upper" ng-bind="indicacao.edicao.sintoma"></span>
+                        </p>       
+                        <p class="badge badge-pill badge-success" ng-if="!indicacao.indicacao">Novo</p>                 
+                    </div>  
+                    <div class="d-flex w-100 justify-content-between">
+                        <small ng-bind="indicacao.edicao.usuario_solicitante"></small>
+                        <small ng-bind="indicacao.edicao.solicitacao|datahora:'dd/MM/yyyy'"></small>                                         
+                    </div> 
+                </a>         
+            </div>        
+        </div>
+        <div class="col-md-9" ng-if="indicacao">        
+            <div class="row justify-content-md-center">                
+                <div class="col-md-6" ng-if="indicacao.indicacao">
+                    <div class="card">
+                        <div class="card-header">   
+                            <h6 class="text-center">Estado atual:</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check align-self-center text-center">	
+                                <i class="fas fa-times" ng-show="indicacao.indicacao.status =='0'"></i>				
+                                <i class="fas fa-check" ng-show="indicacao.indicacao.status =='1'"></i>				
+                                <label class="form-check-label">Indicação Ativo</label>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="text-muted">Indicação</label></br>
+                                <span ng-bind="indicacao.indicacao.planta + ' para ' + indicacao.indicacao.sintoma"></span>                                
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">prescrição</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="indicacao.indicacao.indicacao" readonly></textarea>
+                            </div>                                                       
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="text-center" ng-if="indicacao.indicacao">Após Mudanças:</h6>
+                            <h6 class="text-center" ng-if="!indicacao.indicacao">Novo</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check align-self-center text-center">	
+                                <i class="fas fa-times" ng-show="indicacao.edicao.status =='0'"></i>				
+                                <i class="fas fa-check" ng-show="indicacao.edicao.status =='1'"></i>				
+                                <label class="form-check-label">Indicação Ativo</label>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="text-muted">Indicação</label></br>
+                                <span ng-bind="indicacao.edicao.planta + ' para ' + indicacao.edicao.sintoma"></span>                                
+                            </div>
+                            <div class="form-group">
+                                <label class="text-muted">prescrição</label>
+                                <textarea class="form-control form-control-plaintext" rows="3" ng-bind="indicacao.edicao.indicacao" readonly></textarea>
+                            </div>                                                       
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="row justify-content-around pl-3 pr-3 mt-2">
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#recusar">Recusar <i class="fas fa-times"></i></button>
+                <button type="button" class="btn btn-success" ng-click="setAvaliacao(1)">Aprovar <i class="fas fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

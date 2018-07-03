@@ -1,0 +1,26 @@
+<div ng-include="'views/adminMenu.html'"></div>
+<div ng-include="'views/goBack.html'"></div>
+
+<h3 class="text-center mb-5">Mudanças sob Análise <i class="far fa-clock"></i></h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">                                            
+            <div class="list-group"  ng-if="analise.length > 0">           
+                <div class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="row in analise">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" ng-bind="row.tipo"></h5>
+                        <small class="text-muted"  ng-bind="row.solicitacao|datahora:'dd/MM/yyyy HH:mm:ss'"></small>
+                    </div>
+                    <p class="mb-1" ng-bind="row.nome"></p>                    
+                </div>             
+            </div>                                    
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" ng-if="analise.length == 0">
+                Não Há mudanças sob Análise.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>            
+        </div>
+    </div>
+</div>

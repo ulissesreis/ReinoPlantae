@@ -1,0 +1,38 @@
+<div ng-include="'views/adminMenu.html'"></div>
+<div ng-include="'views/goBack.html'"></div>
+
+<h3 class="text-center mb-5">Monitor de Mudanças <i class="far fa-edit"></i></h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">                                            
+            <div class="list-group"  ng-if="respostas.length > 0">           
+                <div class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="row in respostas">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h2 class="mb-1 badge" ng-class="row.aprovacao =='1' ? 'badge-success': 'badge-danger'">
+                            <span ng-bind="row.tipo"></span>                            
+                            <span  ng-show="row.aprovacao =='1'">
+                                <i class="far fa-check-circle"></i>
+                            </span>
+                            <span ng-show="row.aprovacao =='0'">
+                                <i class="fas fa-ban"></i>
+                            </span>
+                        </h2>
+                        <small class="text-muted" ng-bind="row.resposta|datahora:'dd/MM/yyyy HH:mm:ss'"></small>
+                    </div>                    
+                    <p class="mt-1 mb-0" >                        
+                        <span ng-bind="row.nome" class="font-weight-bold"></span>                        
+                    </p>
+                    <p class="mt-0 mb-0" ng-bind="'Respondido por : ' + row.usuario_resposta"></p>   
+                    <p class="mt-0 mb-0" ng-if="row.descricao_parecer" ng-bind="'Resultado da Análise : ' + row.descricao_parecer"></p>                    
+                </div>             
+            </div>                                    
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" ng-if="respostas.length == 0">
+                Ainda sem respostas.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>            
+        </div>
+    </div>
+</div>

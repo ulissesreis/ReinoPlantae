@@ -1,0 +1,82 @@
+<div ng-include="'views/adminMenu.html'"></div>
+
+<div class="row p-1">
+	<div class="col-md-3 mt-5" >			
+		<div class="input-group">
+			<input type="text" class="form-control form-control-sm" ng-model="search.nome" placeholder="Nome">
+			<div class="input-group-append">				
+				<button type="button" class="btn btn-outline-success" ng-click="ordenarPor = 'nome';direcao = !direcao">
+					<i class="fas fa-sort"></i>
+				</button>
+			</div>
+		</div>
+		<div style="overflow-y: auto; max-height: 70%;">
+			<div class="list-group" >
+				<a ng-repeat="usuario in usuarios| filter:search|orderBy:ordenarPor:direcao"  class="list-group-item d-flex justify-content-between list-group-item-action align-items-center" ng-click="editarUsuario(usuario.usuario_id)">
+					<span ng-bind="usuario.nome"></span>
+					<i  ng-show="usuario.perfil == '2'" class="fas fa-user-tie fa-2x"></i>
+					<i  ng-show="usuario.perfil == '3'" class="fas fa-user-secret fa-2x"></i>
+				</a>				
+			</div>
+		</div>
+	</div>	
+	<div class="col-md-9 p-3 ">
+		<div ng-include="'views/alertaAlteracao.html'" ng-if="userLogin.perfil == 1"></div>
+		<h3 class="text-center">Usuários
+			<button type="button" class="btn btn-outline-success" ng-click="incluirUsuario()">
+				<i class="fas fa-user-plus"></i> 
+			</button>
+		</h3>
+		<hr>
+		<div class="box-shadow">
+			<div class="row">
+				<div class="col-md-5 form-group">
+					<label for="InputNome">Nome: *</label>
+					<input type="text" class="form-control" id="InputNome" placeholder="Nome completo" ng-model="usuario.nome" required ng-minlength="5" maxlength="60">					
+				</div>
+				<div class="col-md-4 form-group">
+					<label for="InputEmail">Email: *</label>
+					<input type="email" class="form-control" id="InputEmail" placeholder="Email" ng-model="usuario.email" required ng-minlength="5" maxlength="45">					
+				</div>
+				
+				<div class="col-md-3 form-check">
+					Perfil: *
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="radioPerfil" id="radio1" value="3" ng-model="usuario.perfil">
+						<label class="form-check-label" for="radio1">
+							Administrador
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="radioPerfil" id="radio2" value="2" ng-model="usuario.perfil">
+						<label class="form-check-label" for="radio2">
+							Professor
+						</label>
+					</div>
+					<div class="form-check disabled">
+						<input class="form-check-input" type="radio" name="radioPerfil" id="radio3" value="1" ng-model="usuario.perfil">
+						<label class="form-check-label" for="radio3">
+							Assistente/Aluno
+						</label>
+					</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label for="InputPassword">Senha: *</label>
+					<input type="password" class="form-control" id="InputPassword" aria-describedby="senhaHelp" placeholder="senha" ng-model="usuario.senha" required ng-minlength="5" maxlength="45">
+					<small id="senhaHelp" class="form-text text-muted">Minimo 5 digitos (letras ou numeros).</small>					
+				</div>
+				<div class="col-md-3 form-check align-self-center">					
+					<input type="checkbox" class="form-check-input" id="ativo" ng-true-value="'1'" ng-false-value="'0'" ng-model="usuario.status">
+					<label class="form-check-label" for="ativo">Usuário Ativo</label>
+				</div>								
+			</div>		
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-3">
+					<button type="submit" ng-click="salvarUsuario()" ng-disabled="!usuario.nome || !usuario.email || !usuario.perfil || !usuario.senha" class="btn btn-success btn-block">Salvar <i class="far fa-save"></i> </button>
+				</div>						
+			</div>
+			<small class="form-text text-muted">¹ A senha de acesso poderá ser alterada pelo usuário.</small>
+		</div>
+	</div>
+</div>
+<div ng-include="'views/goBack.html'"></div>
