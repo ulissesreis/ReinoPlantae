@@ -1,29 +1,38 @@
 # ReinoPlantae
 
 TCC Oferecido a Universidade de Mogi das Cruzes - Análise e denvolvimento de sistemas.
+
 Sistema Repositorio de plantas medicinais.
+
+### Demo
+
+**[View](http://ulissesreis.net/plantae/)**
 
 ## Implementation
 
 PHP 7.0
+
 MYSQL 5.6.35
+
 JavaScript
 
 ### Dependencies
 
 AngularJs 1.6.8
+
 Bootstrap 4.0
+
 FontAwesome 5.1.0
 
 ### Installation
 
 Banco de dados:
-1-Necessario base de dados Mysql
-2-Rodar os scripts de PlantasDDL.sql em seguida PlantasDML.sql que estao no diretorio Scripts Mysql
+1. Necessario base de dados Mysql
+2. Rodar os scripts de PlantasDDL.sql em seguida PlantasDML.sql que estao no diretorio Scripts Mysql
 
 Aplicação:
-1-Alterar o arquivo de conexao de banco de dados com os dados de conexao: ./api/includes/conecta.php
-2-O front end necessita da correta url da api para as requisicoes, em caso de erro do grupo codigo 500 alterar o arquivo: ./app/config/parametros.js
+1. Alterar o arquivo de conexao de banco de dados com os dados de conexao: ./api/includes/conecta.php
+2. O front end necessita da correta url da api para as requisicoes, em caso de erro do grupo codigo 500 alterar o arquivo: ./app/config/parametros.js
 
 Hospedagem:
 1. Copiar todo o conteudo do diretorio aplicação para a hospedagem, a aplicação funcionará nas versões do php 5.7 a 7.1. 
